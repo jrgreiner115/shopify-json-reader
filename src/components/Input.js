@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Typography, TextField, Button, Card, Select, MenuItem, InputLabel} from '@material-ui/core';
+import {TextField, Button, Card} from '@material-ui/core';
 
 class Input extends Component {
   constructor(props) {

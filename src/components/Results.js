@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import {Card, Table, TableHead, TableRow, TableCell, TableBody, Typography} from '@material-ui/core';
+import {Card, Table, TableHead, TableRow, TableCell, TableBody} from '@material-ui/core';
 
-const rowStyle = {
-  textAlign: "left",
-};
 
 class Results extends Component {
-  constructor(props) {
-    super(props)  
-  }
   
   render() {
       let results = this.props.json.product.variants

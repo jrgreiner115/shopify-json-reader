@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Input from "./Input"
 import Results from "./Results"
 let parsed;
-let runtime
 
 class Program extends Component {
   constructor(props) {
