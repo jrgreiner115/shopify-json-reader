@@ -16,6 +16,7 @@ class Results extends Component {
                  <TableCell>Price</TableCell>
                  <TableCell>Variant ID</TableCell>
                  <TableCell>SKU</TableCell>
+                 <TableCell>UPC</TableCell>
                </TableRow>
              </TableHead>
              <TableBody>
@@ -29,6 +30,7 @@ class Results extends Component {
                      <TableCell>{row.price}</TableCell>
                      <TableCell>{row.id}</TableCell>
                      <TableCell>{row.sku}</TableCell>
+                     <TableCell>{row.barcode}</TableCell>
                    </TableRow>
                  );
                })}
