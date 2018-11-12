@@ -21,5 +21,15 @@
 .paper-table {
   margin-top: 25px;
   min-width: 1200px;
-  padding: 25px;
+  padding: 30px 50px 50px 50px;
+}
+
+.help-icon {
+  position: absolute !important;
+  right: 0;
+  padding-right: 25px;
+}
+
+.toolbar {
+  align-self: flex-end
 }
