@@ -13,10 +13,18 @@ class Program extends Component {
   }
   
   getDataPoints = (input) => {
-    parsed = JSON.parse(input.jsonInput)
-    this.setState({
-      jsonFile: parsed,
-    })
+    // parsed = JSON.parse(input.jsonInput)
+    let notparse = input.jsonInput
+    
+    try {
+      let parsed = JSON.parse(notparse)
+      this.setState({
+        jsonFile: parsed,
+      })
+    }
+    catch (e) {
+      alert("This element can't be parsed. Maybe you pasted the wrong thing?")
+    }
   }
   
   render = () => {
