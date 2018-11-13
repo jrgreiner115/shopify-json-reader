@@ -63,6 +63,7 @@ class Results extends Component {
                 <TableCell>Product Title</TableCell>
                 <TableCell>Variant Title</TableCell>
                 <TableCell>Price</TableCell>
+                <TableCell>Product ID</TableCell>
                 <TableCell>Variant ID</TableCell>
                 <TableCell>SKU</TableCell>
                 <TableCell>UPC</TableCell>
@@ -78,6 +79,7 @@ class Results extends Component {
                      </TableCell>
                     <TableCell>{row.title}</TableCell>
                     <TableCell>{row.price}</TableCell>
+                    <TableCell>{row.product_id}</TableCell>
                     <TableCell>{row.id}</TableCell>
                     <TableCell>{row.sku}</TableCell>
                     <TableCell>{row.barcode}</TableCell>
