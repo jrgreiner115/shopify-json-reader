@@ -12,7 +12,7 @@ class Navigation extends Component {
           <Typography 
             color='inherit'
             variant='title'>
-            PMG Helper
+            Shopify JSON Helper
           </Typography>
           <IconButton 
             color="inherit"
