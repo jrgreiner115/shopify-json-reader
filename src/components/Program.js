@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Input from "./Input"
 import Results from "./Results"
-let parsed;
 
 class Program extends Component {
   constructor(props) {
@@ -27,11 +26,35 @@ class Program extends Component {
     }
   }
   
+  handleSort = (filter) => {
+    console.log(filter);
+    let json = this.state.jsonFile
+    let newVariants = this.state.jsonFile.product.variants
+    if (filter === 'inventory_quantity' || filter === 'id' ||filter === 'product_id') {
+      newVariants.sort((a,b) => {
+        return b[filter] - a[filter] 
+      })
+    }
+    else {
+      newVariants.sort((a,b) => {
+        return a[filter].localeCompare(b[filter])
+      })
+    } 
+    console.log("POST", newVariants);
+    json.product.variants = newVariants
+    this.setState({
+      jsonFile: json,
+    })
+      
+  }
+  
+  
+  
   render = () => {
     return (
       <div className="program">
         <Input handleProgram={this.getDataPoints}/>
-        {this.state.jsonFile !== "" ? <Results json={this.state.jsonFile}/> : ""}
+        {this.state.jsonFile !== "" ? <Results sortJSON={this.handleSort} json={this.state.jsonFile}/> : ""}
       </div>
       
     )

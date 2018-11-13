@@ -14,6 +14,10 @@
   float: right;
 }
 
+.column-header:hover {
+  font-weight: bold;
+}
+
 .form-elements {
   margin-top: 10px !important;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Button, Toolbar, Snackbar } from '@material-ui/core';
+import { Card, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Button, Toolbar, Snackbar, ButtonBase } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 
 
@@ -33,10 +33,8 @@ class Results extends Component {
     })
   }
   
-  componentDidMount = () => {
-    this.setState({
-      tableVal: document.getElementById('table')
-    })
+  handleSort = (filter) => {
+    this.props.sortJSON(filter)
   }
   
   render() {
@@ -61,16 +59,58 @@ class Results extends Component {
             <TableHead>
               <TableRow>
                 <TableCell>Product Title</TableCell>
-                <TableCell>Variant Title</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Product ID</TableCell>
-                <TableCell>Variant ID</TableCell>
-                <TableCell>SKU</TableCell>
-                <TableCell>UPC</TableCell>
-                <TableCell>Inventory</TableCell>
+                <TableCell>
+                  <ButtonBase
+                    className='column-header'
+                    onClick={() => this.handleSort('title')}>
+                    Variant Title
+                  </ButtonBase>
+                </TableCell>
+                <TableCell>
+                  <ButtonBase
+                    className='column-header'
+                    onClick={() => this.handleSort('price')}>
+                    Price
+                  </ButtonBase>
+                </TableCell>
+                <TableCell>
+                  <ButtonBase
+                    className='column-header'
+                    onClick={() => this.handleSort('product_id')}>
+                    Product ID
+                  </ButtonBase>
+                </TableCell>
+                <TableCell>
+                  <ButtonBase
+                    className='column-header'
+                    onClick={() => this.handleSort('id')}>
+                    Variant ID
+                  </ButtonBase>
+                </TableCell>
+                <TableCell id='sku-header'>
+                  <ButtonBase
+                    className='column-header'
+                    onClick={() => this.handleSort('sku')}>
+                    SKU
+                  </ButtonBase>
+                </TableCell>
+                <TableCell>
+                  <ButtonBase
+                    className='column-header'
+                    onClick={() => this.handleSort('barcode')}>
+                    UPC
+                  </ButtonBase>
+                </TableCell>
+                <TableCell>
+                  <ButtonBase
+                    className='column-header'
+                    onClick={() => this.handleSort('inventory_quantity')}>
+                    Inventory
+                  </ButtonBase>
+                </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody id='table-body'>
               {results.map(row => {
                 return (
                   <TableRow key={row.id}>
