@@ -21,6 +21,13 @@ class Input extends Component {
     this.props.handleProgram(this.state)
   }
   
+  handleClear = (event) => {
+    event.preventDefault()
+    this.setState({
+      jsonInput: "",
+    })
+  }
+  
   render = () => {
     return (
       <div className='input-container'>
@@ -41,6 +48,13 @@ class Input extends Component {
             className="form-elements"
             variant='contained'>
             Run
+          </Button>
+          <Button
+            onClick={this.handleClear}
+            color='primary'
+            className="form-elements"
+            variant='contained'>
+            Clear
           </Button>
         </Card>
         
