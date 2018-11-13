@@ -52,7 +52,7 @@ class Input extends Component {
           <Button
             onClick={this.handleClear}
             color='primary'
-            className="form-elements"
+            className="form-elements clear-button"
             variant='contained'>
             Clear
           </Button>
