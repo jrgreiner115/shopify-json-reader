@@ -41,3 +41,8 @@
 .toolbar {
   align-self: flex-end
 }
+
+.plp-collection:hover {
+  cursor: pointer;
+  font-weight: bold;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Button, Toolbar, Snackbar, ButtonBase } from '@material-ui/core';
+import { Card, Table, Typography, TableHead, TableRow, TableCell, TableBody, IconButton, Button, Toolbar, Snackbar, ButtonBase } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 
 
@@ -9,19 +9,20 @@ class Results extends Component {
     
     this.state = {
       open: false,
+      collectionString: "",
     }
   }
   
   handleCopy = () => {
-    let applesauce = document.getElementById('results-div');
+    let tableToCopy = document.getElementById('results-div');
   
-            var selection = window.getSelection ();
-            var rangeToSelect = document.createRange ();
-            rangeToSelect.selectNodeContents(applesauce);
+    let selection = window.getSelection ();
+    let rangeToSelect = document.createRange ();
+    rangeToSelect.selectNodeContents(tableToCopy);
 
-            selection.removeAllRanges();
-            selection.addRange(rangeToSelect);
-            document.execCommand('copy');
+    selection.removeAllRanges();
+    selection.addRange(rangeToSelect);
+    document.execCommand('copy');
     this.setState({
       open: true,
     })
@@ -35,6 +36,52 @@ class Results extends Component {
   
   handleSort = (filter) => {
     this.props.sortJSON(filter)
+  }
+  
+  componentDidMount = () => {
+    let arr = this.buildArray(this.props.json.product.variants)
+    let string = this.variantIterator(this.props.json.product.handle, arr)
+    this.setState({
+      collectionString: string
+    })
+  }
+  
+  variantIterator = (productHandle, variants) => {
+    let newString = '';
+    if (variants.length === 1) {
+      return newString += productHandle
+    } else {
+    
+      variants.map( (variant) => {
+        let variantString = variant.toString()
+        let partial = productHandle + ':' + variantString + "|"
+        return newString += partial
+      })
+      return newString
+    }
+  }
+  
+  buildArray = (json) => {
+    console.log('inside build array', json)
+    let variants = []
+    json.map(variant => { 
+      return variants.push(variant.id)
+    }) 
+    return variants
+  }
+  
+  handleCollectionCopy = () => {
+    let collection = document.getElementById('plp-collection-string')
+    let selection = window.getSelection ();
+    let rangeToSelect = document.createRange ();
+    rangeToSelect.selectNodeContents(collection);
+
+    selection.removeAllRanges();
+    selection.addRange(rangeToSelect);
+    document.execCommand('copy');
+    this.setState({
+      open: true,
+    })
   }
   
   render() {
@@ -129,6 +176,26 @@ class Results extends Component {
               })}
             </TableBody>
           </Table>
+          </div>
+        </Card>
+        <Card className="paper-table">
+          <div>
+            <div>
+              <Typography variant='body1'>
+                  Product Variant String for Collections:
+              </Typography>
+            </div>
+            <div
+              id='plp-collection-string' 
+              onClick={this.handleCollectionCopy}
+            >
+              <Typography 
+                variant='body1'
+                className='plp-collection'
+                >
+                  {this.state.collectionString}
+              </Typography>
+            </div>
           </div>
         </Card>
         <Snackbar

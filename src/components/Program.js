@@ -27,7 +27,6 @@ class Program extends Component {
   }
   
   handleSort = (filter) => {
-    console.log(filter);
     let json = this.state.jsonFile
     let newVariants = this.state.jsonFile.product.variants
     if (filter === 'inventory_quantity' || filter === 'id' ||filter === 'product_id') {
@@ -40,7 +39,6 @@ class Program extends Component {
         return a[filter].localeCompare(b[filter])
       })
     } 
-    console.log("POST", newVariants);
     json.product.variants = newVariants
     this.setState({
       jsonFile: json,
